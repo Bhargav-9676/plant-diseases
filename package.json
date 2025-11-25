@@ -1,0 +1,33 @@
+{
+  "name": "plant-disease-detector",
+  "version": "1.0.0",
+  "description": "A frontend web application to detect plant diseases from uploaded images using Google AI (Gemini).",
+  "main": "index.tsx",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "tailwind",
+    "gemini",
+    "google-ai",
+    "plant-disease"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@google/genai": "^1.30.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-markdown": "^10.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "parcel": "^2.12.0",
+    "process": "^0.11.10",
+    "typescript": "^5.5.3"
+  }
+}

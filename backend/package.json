@@ -1,0 +1,17 @@
+{
+  "name": "plant-disease-detector-backend",
+  "version": "1.0.0",
+  "description": "Backend service for Plant Disease Detector, handles Firestore integration.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@google-cloud/firestore": "^7.8.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5"
+  }
+}

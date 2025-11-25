@@ -1,0 +1,5 @@
+{
+  "name": "Plant Disease Detector",
+  "description": "A frontend web application to detect plant diseases from uploaded images using Google AI (Gemini).",
+  "requestFramePermissions": []
+}
