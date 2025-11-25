@@ -1,14 +1,16 @@
-import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
+
+import { GoogleGenAI, GenerateContentResponse, Chat, Part } from "@google/genai";
 import { ToolCall } from "../types";
 
 const MODEL_NAME_IMAGE = 'gemini-2.5-flash-image'; // Changed to gemini-2.5-flash-image for general image tasks without explicit API key selection requirement
+export const MODEL_NAME_TEXT = 'gemini-2.5-flash'; // Model for text-based chat
 
 /**
  * Encodes a File object into a Base64 string.
  * @param file The File object to encode.
  * @returns A promise that resolves with the Base64 string of the file.
  */
-function fileToBase64(file: File): Promise<string> {
+export function fileToBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => {
@@ -63,6 +65,22 @@ export async function analyzePlantImage(file: File): Promise<string> {
     console.error("Error analyzing plant image with Gemini API:", error);
     // Generalize the error message, as API key management is external
     throw new Error(`Failed to analyze image: ${error.message || 'An unexpected API error occurred.'}`);
+  }
+}
+
+/**
+ * Sends a message to an existing chat session and streams the response.
+ * @param chat The Chat object.
+ * @param message The user's message.
+ * @returns An async generator yielding chunks of the model's response.
+ */
+export async function* sendMessageToChat(chat: Chat, message: string): AsyncGenerator<string, void, unknown> {
+  const streamResponse = await chat.sendMessageStream({ message: message });
+  for await (const chunk of streamResponse) {
+    const c = chunk as GenerateContentResponse;
+    if (c.text) {
+      yield c.text;
+    }
   }
 }
 
